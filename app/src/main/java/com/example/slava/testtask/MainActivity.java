@@ -166,20 +166,21 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     try {
-                        if (!isPlaingNow) {
+//                        if (!isPlaingNow) {
                             currentSong = song1;
-                            button_play.setText("STOP");
+//                            button_play.setText("STOP");
                             needToCheck = true;
                             isPlaingNow = true;
                             Log.d(TAG, "onClick: play");
+                            button_play.setClickable(false);
                             startPlay();
-                        } else {
-                            button_play.setText("PLAY");
-                            Log.d(TAG, "onClick: stop");
-                            isPlaingNow = false;
-                            needToCheck = false;
-                            currentSong.stop();
-                        }
+//                        } else {
+////                            button_play.setText("PLAY");
+////                            Log.d(TAG, "onClick: stop");
+////                            isPlaingNow = false;
+////                            needToCheck = false;
+////                            currentSong.stop();
+//                        }
                     } catch (Exception ex) {
                         Toast.makeText(MainActivity.this, "Выберите песни" + ex, Toast.LENGTH_SHORT).show();
                     }}
