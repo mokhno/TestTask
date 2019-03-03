@@ -49,12 +49,9 @@ public class MainActivity extends AppCompatActivity {
     Button button_play;
 
 
-
     public MediaPlayer song0;
     public MediaPlayer song1;
     private ScheduledExecutorService scheduledExecutorService;
-
-
 
 
     private boolean needToCheck = false;
@@ -148,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         listView.setVisibility(View.INVISIBLE);
+
                     }
                 });
             }
@@ -158,22 +156,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 seekValue = seekBar.getProgress();
-                FADE = (seekValue + 2) *1000;
-                Log.d(TAG, "Fade: "+ FADE);
-                if ((song1.getDuration()<FADE)||(song0.getDuration()<FADE) ){
-                    Toast.makeText(MainActivity.this,"Аудиофалы короче кроссфейда",Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
+                FADE = (seekValue + 2) * 1000;
+                Log.d(TAG, "Fade: " + FADE);
+                if ((song1.getDuration() < FADE) || (song0.getDuration() < FADE)) {
+                    Toast.makeText(MainActivity.this, "Аудиофалы короче кроссфейда", Toast.LENGTH_SHORT).show();
+                } else {
                     try {
 //                        if (!isPlaingNow) {
-                            currentSong = song1;
+                        currentSong = song1;
 //                            button_play.setText("STOP");
-                            needToCheck = true;
-                            isPlaingNow = true;
-                            Log.d(TAG, "onClick: play");
-                            button_play.setClickable(false);
-                            startPlay();
+                        needToCheck = true;
+                        isPlaingNow = true;
+                        Log.d(TAG, "onClick: play");
+                        button_play.setClickable(false);
+                        button_one.setClickable(false);
+                        button_two.setClickable(false);
+                        startPlay();
 //                        } else {
 ////                            button_play.setText("PLAY");
 ////                            Log.d(TAG, "onClick: stop");
@@ -183,7 +181,8 @@ public class MainActivity extends AppCompatActivity {
 //                        }
                     } catch (Exception ex) {
                         Toast.makeText(MainActivity.this, "Выберите песни" + ex, Toast.LENGTH_SHORT).show();
-                    }}
+                    }
+                }
 
 
             }
@@ -227,10 +226,9 @@ public class MainActivity extends AppCompatActivity {
             currentSong = song1;
             Log.d(TAG, "startNextSong: song1");
         }
-        play(currentSong,FADE);
+        play(currentSong, FADE);
         needToCheck = true;
     }
-
 
 
     public void getMusic() {
@@ -273,7 +271,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private int iVolume;
     private int gVolume;
 
@@ -281,8 +278,6 @@ public class MainActivity extends AppCompatActivity {
     private final static int INT_VOLUME_MIN = 0;
     private final static float FLOAT_VOLUME_MAX = 1;
     private final static float FLOAT_VOLUME_MIN = 0;
-
-
 
 
     public void play(final MediaPlayer mediaPlayer, int fadeDuration) {
@@ -379,6 +374,7 @@ public class MainActivity extends AppCompatActivity {
 
         mediaPlayer.setVolume(fVolume, fVolume);
     }
+
     private void updateVolume1(MediaPlayer mediaPlayer, int change) {
         // increment or decrement depending on type of fade
         gVolume = gVolume + change;
